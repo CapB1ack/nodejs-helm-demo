@@ -61,7 +61,7 @@ jobs:
     - name: Read node from package.json
       uses: culshaw/read-package-node-version-actions@v1
       with:
-        path: "./package.json"
+        path: "./"
       id: package-node-version
 
     - name: Build, tag, and push image to Amazon ECR
