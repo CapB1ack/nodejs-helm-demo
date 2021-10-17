@@ -62,7 +62,7 @@ jobs:
       uses: culshaw/read-package-node-version-actions@v1
       id: package-node-version
 
-  - name: Get short SHA
+    - name: Get short SHA
       id: slug
       run: echo "::set-output name=sha4::$(echo ${GITHUB_SHA} | cut -c1-4)"
 
