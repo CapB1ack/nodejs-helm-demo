@@ -1,0 +1,56 @@
+replicaCount: 1
+namespace: "default"
+image:
+  repository: 482720962971.dkr.ecr.eu-central-1.amazonaws.com/koryakin
+  pullPolicy: IfNotPresent
+  tag: "v0.0.1"
+
+certManager:
+  name: "eks-demo"
+  acme:
+    server: "https://acme-v02.api.letsencrypt.org/directory"
+    email: "capback250@gmail.com"
+
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+
+deployment:
+  containerPort: 3000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: ""
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/issuer: "eks-demo"
+  hosts:
+    - host: eks-demo.koryakin.devops.dataart.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: eks-demo-tls
+      hosts:
+        - eks-demo.koryakin.devops.dataart.com
+
+resources:
+  limits:
+    memory: 1Gi
+    cpu: 1000m
+  requests:
+    memory: 512Mi
+    cpu: 250m
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 30
+  targetMemoryUtilizationPercentage: 30
+
