@@ -84,3 +84,23 @@ jobs:
         branch: main
         updateFile: true
         message: 'Update Image Version to ${{ steps.package-node-version.outputs.version }}'
+
+    - name: Update chart version
+      uses: fjogeleit/yaml-update-action@master
+      with:
+        valueFile: 'chart/Chart.yaml'
+        propertyPath: 'version'
+        value: '${{ steps.package-node-version.outputs.version }}'
+        branch: main
+        updateFile: true
+        message: 'Update Image Version to ${{ steps.package-node-version.outputs.version }}'
+
+    - name: Update chart app version
+      uses: fjogeleit/yaml-update-action@master
+      with:
+        valueFile: 'chart/Chart.yaml'
+        propertyPath: 'appVersion'
+        value: '${{ steps.package-node-version.outputs.version }}'
+        branch: main
+        updateFile: true
+        message: 'Update Image Version to ${{ steps.package-node-version.outputs.version }}'
