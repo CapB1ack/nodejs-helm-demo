@@ -33,8 +33,7 @@ on:
 
 env:
   AWS_REGION: eu-central-1
-  ECR_REPOSITORY: koryakin           # set this to your Amazon ECR repository name
-  CONTAINER_NAME: nodejs-helm-demo           # set this to the name of the container in the
+  ECR_REPOSITORY: nodejs-helm-demo           # set this to your Amazon ECR repository name
 
 jobs:
   deploy:
@@ -62,15 +61,15 @@ jobs:
       uses: culshaw/read-package-node-version-actions@v1
       id: package-node-version
 
-    - name: Get short SHA
-      id: slug
-      run: echo "::set-output name=sha4::$(echo ${GITHUB_SHA} | cut -c1-4)"
+#    - name: Get short SHA
+#      id: slug
+#      run: echo "::set-output name=sha4::$(echo ${GITHUB_SHA} | cut -c1-4)"
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ steps.package-node-version.outputs.version }}-${{ steps.slug.outputs.sha4 }}
+        IMAGE_TAG: ${{ steps.package-node-version.outputs.version }}
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
