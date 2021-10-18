@@ -82,3 +82,5 @@ jobs:
         propertyPath: 'image.tag'
         value: ${{ steps.package-node-version.outputs.version }}
         branch: main
+        updateFile: true
+        message: 'Update Image Version to ${{ steps.package-node-version.outputs.version }}'
