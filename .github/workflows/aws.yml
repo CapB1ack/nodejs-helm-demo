@@ -74,3 +74,11 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: Update Image Version in the related HelmChart values.yaml
+      uses: fjogeleit/yaml-update-action@master
+      with:
+        valueFile: 'chart/values.yaml'
+        propertyPath: 'image.tag'
+        value: ${{ steps.package-node-version.outputs.version }}
+        branch: main
