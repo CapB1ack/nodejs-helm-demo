@@ -3,7 +3,7 @@ namespace: default
 image:
   repository: 482720962971.dkr.ecr.eu-central-1.amazonaws.com/nodejs-helm-demo
   pullPolicy: IfNotPresent
-  tag: 0.0.10
+  tag: 0.0.11
 certManager:
   name: eks-demo
   acme:
