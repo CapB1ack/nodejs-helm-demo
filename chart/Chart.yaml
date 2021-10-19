@@ -3,4 +3,4 @@ name: nodejs-helm-demo
 description: A Helm chart for Kubernetes with custom node js app
 type: application
 version: 0.0.8
-appVersion: 0.0.7
+appVersion: 0.0.8
