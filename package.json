@@ -1,6 +1,6 @@
 {
   "name": "service1",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "service 1",
   "main": "index.js",
   "scripts": {
