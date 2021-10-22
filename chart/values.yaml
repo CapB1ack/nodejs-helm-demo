@@ -1,4 +1,3 @@
-replicaCount: 1
 namespace: default
 image:
   repository: 482720962971.dkr.ecr.eu-central-1.amazonaws.com/nodejs-helm-demo
